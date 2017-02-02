@@ -17,6 +17,9 @@
 - `docker ps -a`: List all containers
 - `docker start [CONTAINER_ID]`: Start container with id
 - `docker stop [CONTAINER_ID]`: Stop container with id
+- `docker attach [CONTAINER_NAME]`: Attach (or get in to) the container with name
+    - To detach from the container, hit `control P`, `control Q,` it exits you out of the container by detaching you from it, but leaves it running, so that you can attach back again and pick up where you left off.
+- `docker exec [CONTAINER_NAME] [COMMAND]`: Execute the command in the running container
 - `docker rm [CONTAINER_ID]`: Remove container with id
 
 ## Other commands
