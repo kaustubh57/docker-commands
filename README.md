@@ -1,6 +1,5 @@
 # docker-commands
 ------------------
-
 ## Basic commands
 - `docker --version`
 - `docker commit [CONTAINER_ID] [NEW_IMAGE_NAME]:[TAG_NAME]`: Create new image from container
@@ -16,6 +15,8 @@
 - `docker run --memory maximul-allowed-memory [IMAGE_NAME]`: Memory limits parameter - `--memory`
 - `docker run --cpu-shares [IMAGE_NAME]`: CPU limits parameter - `--cpu-shares` relative to other containers
 - `docker run --cpu-quota [IMAGE_NAME]`: hard limits. e.g. Container only gets to use 10% of the total CPU, even if 90% of the CPU time is idle
+- `docker run -ti -v /home/docker/example:/shared_folder ubuntu bash`: Host machine's "/home/docker/example" folder can be accessed in the docker container using "/shared_folder" using `-v`
+- `docker run -ti --volumes-from [CONTAINER_NAME] ubuntu bash`: New container will share folder from another container
 - `docker rmi [IMAGE_ID]`: Remove image by id
 - `docker rmi [IMAGE_NAME]:[TAG_NAME]`: Remove image by name and tag name
 
@@ -37,7 +38,22 @@
 - `docker run --rm -ti --net=[DOCKER_PRIVATE_NETWORK_NAME] --name [NEW_CONTAINER_NAME] ubuntu`: Joint new container to the docker's private network using `--net`
 
 ## Other commands
-- `docker logs [CONTAINER_NAME]`: Check logs of the docker container 
+- `docker logs [CONTAINER_NAME]`: Check logs of the docker container
+
+## Volumes
+- Virtual **discs** to store and share data
+- Two main varieties:
+    - *Persistent*: Where you can put data there, and it will be available on the host, and when the container goes away, the data will still be there.
+    - *Ephemeral*: These exist as long as the container is using them. But when no container is using them, they evaporate. So they're sort of ephemeral. They'll stick around as long as they're being used but they're not permanent.
+- Not part of images: No part of volumes will be included when you download an image and no part of volumes is gonna be involved if you upload an image. They're for your local data, local to this host.
+
+## dockerfile
+- Small program to create an image
+- Create docker build file with name `Dockerfile`
+- `docker build -t [NAME_OF_RESULT] .`: `-t` stands for tag. When you've finished building this thing, tag it with this name so that it's easy to find afterward. Dot (`.`) at the end specifies the location of docker file.
 
 ## Install docker
 - https://docs.docker.com/engine/installation/
+
+## Tutorial
+- https://www.lynda.com/Docker-tutorials/Welcome/485649/514162-4.html
